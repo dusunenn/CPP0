@@ -17,13 +17,18 @@
 int main()
 {
     PhoneBook phoneBook;
-    std::cout << "=========PHONEBOOK==========" << std::endl;
+    std::cout << "\033[2J\033[1;1H";
+    std::cout.flush(); 
+    std::cout << "===================================" << std::endl;
+    std::cout << "|           PHONEBOOK             |" << std::endl;
+    std::cout << "===================================\n" << std::endl;
     std::string command;
     while (true)
     {
         std::cout << "Enter command (add, search, exit): ";
         if (!std::getline(std::cin, command))
         {
+            std::cout << std::endl;
             break;
         }
         if (command == "exit")
@@ -41,7 +46,9 @@ int main()
         }
         else
         {
+            std::cout << "\n-------------------------------------------------" << std::endl;
             std::cout << "Unknown command. Please use add, search, or exit." << std::endl;
+            std::cout << "-------------------------------------------------\n"  << std::endl;
         }
     }
     return 0;

@@ -17,7 +17,9 @@ std::string PhoneBook::truncateString(const std::string& str, size_t width) cons
 
 void PhoneBook::addContact()
 {
-    std::cout << "Şu anda rehberde " << contactCount << " kişi var." << std::endl;
+    std::cout << "\033[2J\033[1;1H";
+    std::cout.flush(); 
+    std::cout << "There are currently " << contactCount << "  people in the directory." << std::endl;
     
     if (contactCount >= 3)
     {
@@ -26,31 +28,51 @@ void PhoneBook::addContact()
     }
 
     Contact newContact;
-    std::cout << "Yeni kisi ekleniyor.." << std::endl;
+    std::cout << "Yeni kisi ekleniyor..\n" << std::endl;
     
     std::string name;
     std::cout << "Enter name: ";
-    std::getline(std::cin, name);
+    if(!std::getline(std::cin, name))
+    {
+        std::cout << std::endl;
+        return;
+    }
     newContact.setIsim(name);
 
     std::string surname;
     std::cout << "Enter surname: ";
-    std::getline(std::cin, surname);
+    if(!std::getline(std::cin, surname))
+    {
+        std::cout << std::endl;
+        return;
+    }
     newContact.setSoyisim(surname);
 
     std::string nickname;
     std::cout << "Enter nickname: ";
-    std::getline(std::cin, nickname);
+    if(!std::getline(std::cin, nickname))
+    {
+        std::cout << std::endl;
+        return;
+    }
     newContact.setTakmaAd(nickname);
 
     std::string phoneNumber;
     std::cout << "Enter phone number: ";
-    std::getline(std::cin, phoneNumber);
+    if(!std::getline(std::cin, phoneNumber))
+    {
+        std::cout << std::endl;
+        return;
+    }
     newContact.setTelefonNumarasi(phoneNumber);
     
     std::string secret;
     std::cout << "Enter darkest secret: ";
-    std::getline(std::cin, secret);
+    if(!std::getline(std::cin, secret))
+    {
+        std::cout << std::endl;
+        return;
+    }
     newContact.setGizliBilgi(secret);
 
     contacts[contactCount] = newContact;
@@ -60,6 +82,8 @@ void PhoneBook::addContact()
 
 void PhoneBook::displayContactsList()
 {
+    std::cout << "\033[2J\033[1;1H";
+    std::cout.flush(); 
     std::cout << "-------------------------------------------" << std::endl;
     std::cout << std::setw(10) << std::right << "Index|";
     std::cout << std::setw(10) << std::right << "Name|";
