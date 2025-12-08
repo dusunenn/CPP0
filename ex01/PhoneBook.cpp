@@ -19,91 +19,99 @@ void PhoneBook::addContact()
 {
     std::cout << "\033[2J\033[1;1H";
     std::cout.flush(); 
-    std::cout << "There are currently " << contactCount << "  people in the directory." << std::endl;
-    
-    if (contactCount >= 3)
-    {
-        std::cout << "PhoneBook is full!" << std::endl;
-        return;
-    }
+    std::cout << "There are currently " << (contactCount < 8 ? contactCount : 8) << " people in the directory." << std::endl;
 
+    /*
+    if (contactCount < 8) 
+    {
+        std::cout << contactCount;
+    }
+     else 
+    {
+        std::cout << 8;
+    }
+    */
+
+    //cin >>: Tek kelime okur. (Boşluk görünce kaçar).
+    //getline: Cümle okur. (Sadece Enter'a basınca durur).
+    
     Contact newContact;
     std::cout << "Adding new person..\n" << std::endl;
     
     std::string name;
     std::cout << "Enter name: ";
-    if(!std::getline(std::cin, name))
-    {
-        std::cout << std::endl;
+    std::getline(std::cin, name);
+    if (name.empty()) {
+        std::cout << "Field cannot be empty!" << std::endl;
         return;
     }
     newContact.setName(name);
 
     std::string surname;
     std::cout << "Enter surname: ";
-    if(!std::getline(std::cin, surname))
-    {
-        std::cout << std::endl;
+    std::getline(std::cin, surname);
+    if (surname.empty()) {
+        std::cout << "Field cannot be empty!" << std::endl;
         return;
     }
     newContact.setSurname(surname);
 
     std::string nickname;
     std::cout << "Enter nickname: ";
-    if(!std::getline(std::cin, nickname))
-    {
-        std::cout << std::endl;
+    std::getline(std::cin, nickname);
+    if (nickname.empty()) {
+        std::cout << "Field cannot be empty!" << std::endl;
         return;
     }
     newContact.setNickname(nickname);
 
     std::string phoneNumber;
     std::cout << "Enter phone number: ";
-    if(!std::getline(std::cin, phoneNumber))
-    {
-        std::cout << std::endl;
+    std::getline(std::cin, phoneNumber);
+    if (phoneNumber.empty()) {
+        std::cout << "Field cannot be empty!" << std::endl;
         return;
     }
     newContact.setPhoneNumber(phoneNumber);
     
     std::string secret;
     std::cout << "Enter darkest secret: ";
-    if(!std::getline(std::cin, secret))
-    {
-        std::cout << std::endl;
+    std::getline(std::cin, secret);
+    if (secret.empty()) {
+        std::cout << "Field cannot be empty!" << std::endl;
         return;
     }
     newContact.setDarkestSecret(secret);
 
-    contacts[contactCount] = newContact;
-    contactCount++;
-    std::cout << "Contact added successfully!" << std::endl;
+    if (contactCount < 8) {
+        contacts[contactCount] = newContact;
+        contactCount++;
+    } else {
+        contacts[index] = newContact;
+        index = (index + 1) % 8;
+    }
+    std::cout << "Contact added!" << std::endl;
 }
 
 void PhoneBook::displayContactsList()
 {
-    std::cout << "\033[2J\033[1;1H";
-    std::cout.flush(); 
-    std::cout << "-------------------------------------------" << std::endl;
-    std::cout << std::setw(10) << std::right << "Index|";
-    std::cout << std::setw(10) << std::right << "Name|";
-    std::cout << std::setw(10) << std::right << "Surname|";
-    std::cout << std::setw(10) << std::right << "Nickname|" << std::endl;
-    std::cout << "-------------------------------------------" << std::endl;
-
-    for (int i = 0; i < contactCount; i++)
+    std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
+    std::cout << "|----------|----------|----------|----------|" << std::endl;
+    int totalContacts = (contactCount < 8) ? contactCount : 8;
+    for (int i = 0; i < totalContacts; i++)
     {
-        std::cout << std::setw(10) << std::right << i + 1 << "|";
-        std::cout << std::setw(10) << std::right << truncateString(contacts[i].getName(), 10) << "|";
-        std::cout << std::setw(10) << std::right << truncateString(contacts[i].getSurname(), 10) << "|";
-        std::cout << std::setw(10) << std::right << truncateString(contacts[i].getNickname(), 10) << std::endl;
+        std::cout << "|" << std::setw(10) << std::right << i + 1;
+        std::cout << "|" << std::setw(10) << std::right << truncateString(contacts[i].getName(), 10);
+        std::cout << "|" << std::setw(10) << std::right << truncateString(contacts[i].getSurname(), 10);
+        std::cout << "|" << std::setw(10) << std::right << truncateString(contacts[i].getNickname(), 10) << "|" << std::endl;
     }
     
 }
 
 void PhoneBook::searchContact()
 {
-    if (contactCount == 0)
+    int totalContacts = (contactCount < 8) ? contactCount : 8;
+    if (totalContacts == 0)
     {
         std::cout << "No contacts in the phonebook" << std::endl;
         return;
@@ -115,39 +123,17 @@ void PhoneBook::searchContact()
     std::string input;
     std::getline(std::cin, input);
 
-    int selectedIndex = -1;
-    bool isValidNumber = true;
-
-    if (input.empty())
+    if (input.length() != 1 || input[0] < '1' || input[0] > '8')
     {
-        std::cout << "Invalid input: empty string" << std::endl;
+        std::cout << "Invalid index! Enter 1-8." << std::endl;
         return;
     }
     
-    for (size_t i = 0; i < input.length(); i++)
-    {
-        if (input[i] < '0' || input[i] > '9')
-        {
-            isValidNumber = false;
-            break;
-        }
-    }
-    
-    if (!isValidNumber)
-    {
-        std::cout << "Invalid input: not a number" << std::endl;
-        return;
-    }
+    int selectedIndex = input[0] - '0';
 
-    selectedIndex = 0;
-    for (size_t i = 0; i < input.length(); i++)
+    if (selectedIndex > totalContacts)
     {
-        selectedIndex = selectedIndex * 10 + (input[i] - '0');
-    }
-
-    if (selectedIndex < 1 || selectedIndex > contactCount)
-    {
-        std::cout << "Invalid index: out of range (1-" << contactCount << ")" << std::endl;
+        std::cout << "Invalid index! Available contacts: 1-" << totalContacts << std::endl;
         return;
     }
     int arrayIndex = selectedIndex - 1;

@@ -1,6 +1,6 @@
 NAME = PhoneBook
 CXX= c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 src = Contact.cpp PhoneBook.cpp main.cpp
 obj = $(SRCS:.cpp=.o)
 
