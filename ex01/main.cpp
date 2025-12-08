@@ -25,22 +25,22 @@ int main()
     std::string command;
     while (true)
     {
-        std::cout << "Enter command (add, search, exit): ";
+        std::cout << "Enter command (ADD, SEARCH, EXIT): ";
         if (!std::getline(std::cin, command))
         {
             std::cout << std::endl;
             break;
         }
-        if (command == "exit")
+        if (command == "EXIT")
         {
             std::cout << "Exiting..." << std::endl;
             break;
         }
-        else if (command == "add")
+        else if (command == "ADD")
         {
             phoneBook.addContact();
         }
-        else if (command == "search")
+        else if (command == "SEARCH")
         {
             phoneBook.searchContact();
         }

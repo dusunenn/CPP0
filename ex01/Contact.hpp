@@ -6,25 +6,25 @@
 class Contact
 {
 private:
-    std::string isim;
-    std::string soyisim;
-    std::string takma_ad;
-    std::string telefonNumarasi;
-    std::string gizliBilgi;
+    std::string name;
+    std::string surname;
+    std::string nickname;
+    std::string phoneNumber;
+    std::string darkestSecret;
 
 public:
     Contact();
-    void setIsim(std::string n);
-    void setSoyisim(std::string sn);
-    void setTakmaAd(std::string ta);
-    void setTelefonNumarasi(std::string tn);
-    void setGizliBilgi(std::string gb);
+    void setName(std::string n);
+    void setSurname(std::string sn);
+    void setNickname(std::string ta);
+    void setPhoneNumber(std::string tn);
+    void setDarkestSecret(std::string gb);
 
-    std::string getIsim() const;
-    std::string getSoyisim() const;
-    std::string getTakmaAd() const;
-    std::string getTelefonNumarasi() const;
-    std::string getGizliBilgi() const;
+    std::string getName() const;
+    std::string getSurname() const;
+    std::string getNickname() const;
+    std::string getPhoneNumber() const;
+    std::string getDarkestSecret() const;
 };
 
 #endif

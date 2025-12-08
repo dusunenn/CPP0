@@ -28,7 +28,7 @@ void PhoneBook::addContact()
     }
 
     Contact newContact;
-    std::cout << "Yeni kisi ekleniyor..\n" << std::endl;
+    std::cout << "Adding new person..\n" << std::endl;
     
     std::string name;
     std::cout << "Enter name: ";
@@ -37,7 +37,7 @@ void PhoneBook::addContact()
         std::cout << std::endl;
         return;
     }
-    newContact.setIsim(name);
+    newContact.setName(name);
 
     std::string surname;
     std::cout << "Enter surname: ";
@@ -46,7 +46,7 @@ void PhoneBook::addContact()
         std::cout << std::endl;
         return;
     }
-    newContact.setSoyisim(surname);
+    newContact.setSurname(surname);
 
     std::string nickname;
     std::cout << "Enter nickname: ";
@@ -55,7 +55,7 @@ void PhoneBook::addContact()
         std::cout << std::endl;
         return;
     }
-    newContact.setTakmaAd(nickname);
+    newContact.setNickname(nickname);
 
     std::string phoneNumber;
     std::cout << "Enter phone number: ";
@@ -64,7 +64,7 @@ void PhoneBook::addContact()
         std::cout << std::endl;
         return;
     }
-    newContact.setTelefonNumarasi(phoneNumber);
+    newContact.setPhoneNumber(phoneNumber);
     
     std::string secret;
     std::cout << "Enter darkest secret: ";
@@ -73,7 +73,7 @@ void PhoneBook::addContact()
         std::cout << std::endl;
         return;
     }
-    newContact.setGizliBilgi(secret);
+    newContact.setDarkestSecret(secret);
 
     contacts[contactCount] = newContact;
     contactCount++;
@@ -94,9 +94,9 @@ void PhoneBook::displayContactsList()
     for (int i = 0; i < contactCount; i++)
     {
         std::cout << std::setw(10) << std::right << i + 1 << "|";
-        std::cout << std::setw(10) << std::right << truncateString(contacts[i].getIsim(), 10) << "|";
-        std::cout << std::setw(10) << std::right << truncateString(contacts[i].getSoyisim(), 10) << "|";
-        std::cout << std::setw(10) << std::right << truncateString(contacts[i].getTakmaAd(), 10) << std::endl;
+        std::cout << std::setw(10) << std::right << truncateString(contacts[i].getName(), 10) << "|";
+        std::cout << std::setw(10) << std::right << truncateString(contacts[i].getSurname(), 10) << "|";
+        std::cout << std::setw(10) << std::right << truncateString(contacts[i].getNickname(), 10) << std::endl;
     }
     
 }
@@ -153,10 +153,10 @@ void PhoneBook::searchContact()
     int arrayIndex = selectedIndex - 1;
 
     std::cout << "\n--- Contact Details ---" << std::endl;
-    std::cout << "Name: " << contacts[arrayIndex].getIsim() << std::endl;
-    std::cout << "Surname: " << contacts[arrayIndex].getSoyisim() << std::endl;
-    std::cout << "Nickname: " << contacts[arrayIndex].getTakmaAd() << std::endl;
-    std::cout << "Phone Number: " << contacts[arrayIndex].getTelefonNumarasi() << std::endl;
-    std::cout << "Darkest Secret: " << contacts[arrayIndex].getGizliBilgi() << std::endl;
+    std::cout << "Name: " << contacts[arrayIndex].getName() << std::endl;
+    std::cout << "Surname: " << contacts[arrayIndex].getSurname() << std::endl;
+    std::cout << "Nickname: " << contacts[arrayIndex].getNickname() << std::endl;
+    std::cout << "Phone Number: " << contacts[arrayIndex].getPhoneNumber() << std::endl;
+    std::cout << "Darkest Secret: " << contacts[arrayIndex].getDarkestSecret() << std::endl;
     std::cout << "-----------------------" << std::endl;
 }

@@ -4,50 +4,50 @@ Contact::Contact()
 {
 }
 
-void Contact::setIsim(std::string n)
+void Contact::setName(std::string n)
 {
-    this->isim = n;
+    this->name = n;
 }
 
-void Contact::setSoyisim(std::string sn)
+void Contact::setSurname(std::string sn)
 {
-    this->soyisim = sn;
+    this->surname = sn;
 }
 
-void Contact::setTakmaAd(std::string ta)
+void Contact::setNickname(std::string ta)
 {
-    this->takma_ad = ta;
+    this->nickname = ta;
 }
 
-void Contact::setTelefonNumarasi(std::string tn)
+void Contact::setPhoneNumber(std::string tn)
 {
-    this->telefonNumarasi = tn;
+    this->phoneNumber = tn;
 }
-void Contact::setGizliBilgi(std::string gb)
+void Contact::setDarkestSecret(std::string gb)
 {
-    this->gizliBilgi = gb;
+    this->darkestSecret = gb;
 }
-std::string Contact::getIsim() const
+std::string Contact::getName() const
 {
-    return this->isim;
-}
-
-std::string Contact::getSoyisim() const
-{
-    return this->soyisim;
+    return this->name;
 }
 
-std::string Contact::getTakmaAd() const
+std::string Contact::getSurname() const
 {
-    return this->takma_ad;
+    return this->surname;
 }
 
-std::string Contact::getTelefonNumarasi() const
+std::string Contact::getNickname() const
 {
-    return this->telefonNumarasi;
+    return this->nickname;
 }
 
-std::string Contact::getGizliBilgi() const
+std::string Contact::getPhoneNumber() const
 {
-    return this->gizliBilgi;
+    return this->phoneNumber;
+}
+
+std::string Contact::getDarkestSecret() const
+{
+    return this->darkestSecret;
 }
