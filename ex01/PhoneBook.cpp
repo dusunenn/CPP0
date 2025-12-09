@@ -21,20 +21,6 @@ void PhoneBook::addContact()
     std::cout.flush(); 
     std::cout << "There are currently " << (contactCount < 8 ? contactCount : 8) << " people in the directory." << std::endl;
 
-    /*
-    if (contactCount < 8) 
-    {
-        std::cout << contactCount;
-    }
-     else 
-    {
-        std::cout << 8;
-    }
-    */
-
-    //cin >>: Tek kelime okur. (Boşluk görünce kaçar).
-    //getline: Cümle okur. (Sadece Enter'a basınca durur).
-    
     Contact newContact;
     std::cout << "Adding new person..\n" << std::endl;
     
@@ -95,6 +81,8 @@ void PhoneBook::addContact()
 
 void PhoneBook::displayContactsList()
 {
+    std::cout << "\033[2J\033[1;1H";
+    std::cout.flush();
     std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
     std::cout << "|----------|----------|----------|----------|" << std::endl;
     int totalContacts = (contactCount < 8) ? contactCount : 8;

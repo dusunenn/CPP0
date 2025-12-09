@@ -18,7 +18,7 @@ int main()
 {
     PhoneBook phoneBook;
     std::cout << "\033[2J\033[1;1H";
-    std::cout.flush(); 
+    std::cout.flush();
     std::cout << "===================================" << std::endl;
     std::cout << "|           PHONEBOOK             |" << std::endl;
     std::cout << "===================================\n" << std::endl;
